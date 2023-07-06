@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant Menu</title>
+  <style>
+    /* CSS styling for the form */
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .styled-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+  
+      .styled-button:hover {
+        background-color: #45a049;
+      }
+  </style>
+</head>
+<body>
+  <h1>Add Item to Menu</h1>
+  <form  action="update",  method="POST">
+    {% csrf_token %}
+    <label for="item-name">Item Name:</label>
+    <input type="text" id="item-name" name="item-name" required>
+    
+    <label for="item-category">Category:</label>
+    <select id="item-category" name="item-category" required>
+      <option value="">Select Category</option>
+      <option value="Snacks">Snacks</option>
+      <option value="Dinner">Dinner</option>
+      <option value="Lunch">Lunch</option>
+      <option value="Dessert">Dessert</option>
+    </select>
+
+    <label for="item-price">Price:</label>
+    <input type="text" id="item-price" name="item-price" required>
+
+    <button type="submit">Add Item</button>
+
+    <br>
+    <br>
+
+
+    <a href="/" class="styled-button" >Go back to Menu</a>
+  </form>
+
+  <script>
+    // JavaScript code to handle form submission
+    document.getElementById("item-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const itemName = document.getElementById("item-name").value;
+      const itemCategory = document.getElementById("item-category").value;
+      const itemPrice = document.getElementById("item-price").value;
+
+      // Create new item object
+      const newItem = {
+        name: itemName,
+        category: itemCategory,
+        price: itemPrice
+      };
+
+      // Perform further actions with the new item, such as adding to the menu or sending to the server
+
+      // Reset form
+      document.getElementById("item-form").reset();
+    });
+  </script>
+</body>
+</html>

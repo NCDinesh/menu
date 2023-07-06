@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="{% static 'static/style.css' %}">
+</head>
+<body>
+
+  <h1>Restaurant Menu</h1>
+
+  <a href="/item" class="styled-button" >Enter ITEM Name</a>
+
+  <h2>Menu</h2>
+  <ul>
+    {% for n in item_data %}
+    <li> {{n.itemname}} </li>
+    {% endfor %}
+    
+
+  </ul>
+  
+
+  <h2>Categories</h2>
+  
+  <div class="dropdown">
+    <button class="dropbtn">Snacks</button>
+    <div class="dropdown-content">
+        
+        {% for n in item_data%}
+
+        {% if n.itemtype == "Snacks" %}
+        <ul>
+        <li> {{n.itemname}} </li>
+        </ul>
+        {% endif %}
+
+        {% endfor %}
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Dinner</button>
+    <div class="dropdown-content">
+               
+        {% for n in item_data%}
+
+        {% if n.itemtype == "Dinner" %}
+        <ul>
+        <li> {{n.itemname}} </li>
+        </ul>
+        {% endif %}
+
+        {% endfor %}
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Lunch</button>
+    <div class="dropdown-content">
+               
+        {% for n in item_data%}
+
+        {% if n.itemtype == "Lunch" %}
+        <ul>
+        <li> {{n.itemname}} </li>
+        </ul>
+        {% endif %}
+
+        {% endfor %}
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Dessert</button>
+    <div class="dropdown-content">
+               
+        {% for n in item_data%}
+
+        {% if n.itemtype == "Dessert" %}
+        <ul>
+        <li> {{n.itemname}} </li>
+        </ul>
+        {% endif %}
+
+        {% endfor %}
+    </div>
+  </div>
+
+
+  <script>
+    // JavaScript code to populate the menu and category lists
+
+    // Sample data for menu items
+    const menuItems = [
+      { name: "Item 1", category: "Snacks" },
+      { name: "Item 2", category: "Dinner" },
+      { name: "Item 3", category: "Lunch" },
+      { name: "Item 4", category: "Dessert" }
+      // Add more items as needed
+    ];
+
+    // Function to populate the menu list
+    function populateMenu() {
+      const menuList = document.getElementById("menu-list");
+
+      menuItems.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item.name;
+        menuList.appendChild(li);
+      });
+    }
+
+    // Function to populate the category lists
+    function populateCategory(category) {
+      const categoryList = document.getElementById(`${category.toLowerCase()}-list`);
+
+      const filteredItems = menuItems.filter(item => item.category === category);
+      filteredItems.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item.name;
+        categoryList.appendChild(li);
+      });
+    }
+
+    // Call the populateMenu function to display all menu items
+    populateMenu();
+
+    // Call the populateCategory function for each category
+    populateCategory("Snacks");
+    populateCategory("Dinner");
+    populateCategory("Lunch");
+    populateCategory("Dessert");
+  </script>
+
+
+</body>
+</html>
